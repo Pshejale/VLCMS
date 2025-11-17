@@ -39,10 +39,11 @@ mysql -u root -p < Sql_scripts/Create_user_previlages.sql
 
 ```
 9. Configure
+
 Edit ```db_config.py```:
 - Chage user name to your user name 
 - Chagne the password to yuor password 
-- or you can use the previous one only beacuse you are already creted those user 
+- or you can use the previous username and password beacuse you are already creted those user .
 
 10. Run the Application
 A. Normal Run
