@@ -1,5 +1,4 @@
 USE VLCMS;
---------Owner Sample Data Insertion Script--------
 INSERT INTO OWNER (Owner_Id, Name, Phone_No, Email_Id, Address, Gender) VALUES
 (1, 'Rohit Sharma', '9876543210', 'rohit.sharma@example.com', 'Mumbai, Maharashtra', 'Male'),
 (2, 'Aditi Rao', '9988776655', 'aditi.rao@example.com', 'Bengaluru, Karnataka', 'Female'),
@@ -102,9 +101,7 @@ INSERT INTO OWNER (Owner_Id, Name, Phone_No, Email_Id, Address, Gender) VALUES
 (99, 'Saif Sheikh', '9988223344', 'saif.sheikh@example.com', 'Hyderabad, TS', 'Male'),
 (100, 'Vaishnavi Kulkarni', '9877123456', 'vaishnavi.kulkarni@example.com', 'Pune, Maharashtra', 'Female');
 
--------------------------------------------------------------------------------------------------------------
 
--------vechicles Sample Data Insertion Script--------
 INSERT INTO VEHICLES (Vehicle_Id, Reg_Num, Make, Model, Year, Milage, Owner_Id) VALUES
 (1, 'MH12AB1234', 'Maruti Suzuki', 'Swift', 2018, 45000, 1),
 (2, 'KA03MN8899', 'Hyundai', 'Creta', 2020, 38000, 2),
@@ -216,9 +213,8 @@ INSERT INTO VEHICLES (Vehicle_Id, Reg_Num, Make, Model, Year, Milage, Owner_Id) 
 (99, 'GJ19DM5566', 'Mahindra', 'Scorpio N', 2023, 9000, 99),
 (100, 'DL03CV4455', 'Toyota', 'Innova Crysta', 2018, 95000, 100);
 
--------------------------------------------------------------------------------------------------------------
 
--------workshop Sample Data Insertion Script--------
+
 INSERT INTO WORKSHOP (WorkShop_Id, Name, Phone_No, Email_Id, Location) VALUES
 (1, 'Bosch Car Service Bengaluru', '9845012345', 'bosch.blr@example.com', 'Koramangala, Bengaluru, Karnataka'),
 (2, 'Mahindra First Choice Pune', '9867543210', 'mfc.pune@example.com', 'Viman Nagar, Pune, Maharashtra'),
@@ -243,9 +239,8 @@ INSERT INTO WORKSHOP (WorkShop_Id, Name, Phone_No, Email_Id, Location) VALUES
 (20, 'Maruti Suzuki Service Mysuru', '9845019876', 'maruti.mysore@example.com', 'Hunsur Road, Mysuru, Karnataka');
 
 
--------------------------------------------------------------------------------------------------------------
 
--------SERVICE_RECORD Sample Data Insertion Script--------
+
 INSERT INTO SERVICE_RECORD (Service_Id, Service_Cost, Service_type, Service_Date, Odometer_Readings, Remark, WorkShop_Id, Reg_Num) VALUES
 (1, 4500.00, 'General Service', '2023-02-10', 43000, 'Engine oil and filter replaced', 1, 'MH12AB1234'),
 (2, 5200.00, 'Brake Service', '2023-04-15', 36000, 'Rear brake pads replaced', 2, 'KA03MN8899'),
@@ -358,9 +353,8 @@ INSERT INTO SERVICE_RECORD (Service_Id, Service_Cost, Service_type, Service_Date
 (100, 11200.00, 'Engine Tuning', '2023-07-30', 90000, 'Engine optimized', 20, 'DL03CV4455');
 
 
--------------------------------------------------------------------------------------------------------------
 
--------SERVICE_TASK Sample Data Insertion Script--------
+
 INSERT INTO SERVICE_TASK (Service_Task_Id, Description, Cost, Service_Id) VALUES
 (1, 'Engine oil and filter replacement', 1500.00, 1),
 (2, 'Rear brake pad replacement', 2200.00, 2),
@@ -473,9 +467,7 @@ INSERT INTO SERVICE_TASK (Service_Task_Id, Description, Cost, Service_Id) VALUES
 (100, 'Engine retune + cleaning', 5400.00, 100);
 
 
--------------------------------------------------------------------------------------------------------------
 
--------PART TABLE Sample Data Insertion Script--------
 INSERT INTO PART (Part_Id, Part_No, Name, Warranty_Period, Service_Task_Id) VALUES
 ('PRT001', 'BOSCH-OIL-110', 'Engine Oil Filter', 12, 1),
 ('PRT002', 'MGP-BRK-220', 'Rear Brake Pads', 18, 2),
@@ -588,9 +580,7 @@ INSERT INTO PART (Part_Id, Part_No, Name, Warranty_Period, Service_Task_Id) VALU
 ('PRT100', 'ECU-RETUNE-002', 'Engine ReTune Kit', 24, 100);
 
 
-------------------------------------------------------------------------------------------------------------
 
--------PART_REPLACEMENT Sample Data Insertion Script--------
 INSERT INTO PART_REPLACEMENT (Replacement_Id, Part_Cost, Replacement_Date, Warranty_Period, Service_Task_Id) VALUES
 (1, 1200.00, '2023-02-10', 12, 1),
 (2, 2500.00, '2023-04-15', 18, 2),
@@ -702,9 +692,7 @@ INSERT INTO PART_REPLACEMENT (Replacement_Id, Part_Cost, Replacement_Date, Warra
 (99, 3200.00, '2023-06-24', 6, 99),
 (100, 5400.00, '2023-07-30', 24, 100);
 
--------------------------------------------------------------------------------------------------------------
 
--------WARRANTY_CLAIM Sample Data Insertion Script--------
 INSERT INTO WARRANTY_CLAIM (Claim_Id, Status, Date, Replacement_Id) VALUES
 (1, 'Approved', '2023-06-10', 1),
 (2, 'Pending', '2023-08-20', 2),
@@ -816,116 +804,114 @@ INSERT INTO WARRANTY_CLAIM (Claim_Id, Status, Date, Replacement_Id) VALUES
 (99, 'Rejected', '2023-06-10', 99),
 (100, 'Approved', '2023-09-13', 100);
 
--------------------------------------------------------------------------------------------------------------
 
--------INSURANCE_POLICY Sample Data Insertion Script--------
 INSERT INTO INSURANCE (Insurance_Id, Provider, Policy_No, Expiry_Date, Reg_Num) VALUES
-(1, 'ICICI Lombard', 'POL2023A001', '2025-05-14', 'MH12AB1234'),
-(2, 'HDFC ERGO', 'POL2023A002', '2026-01-10', 'KA03MN8899'),
-(3, 'Bajaj Allianz', 'POL2023A003', '2024-12-20', 'DL01CQ5566'),
-(4, 'SBI General', 'POL2023A004', '2025-10-11', 'TN09BD2345'),
-(5, 'Reliance General', 'POL2023A005', '2026-07-18', 'TS10FG9988'),
-(6, 'Tata AIG', 'POL2023A006', '2025-11-21', 'KL07KL1122'),
-(7, 'ICICI Lombard', 'POL2023A007', '2024-09-09', 'KA19HG7788'),
-(8, 'HDFC ERGO', 'POL2023A008', '2026-04-25', 'TN14ML3344'),
-(9, 'Bajaj Allianz', 'POL2023A009', '2025-06-14', 'OD05AS9090'),
-(10, 'SBI General', 'POL2023A010', '2026-02-09', 'RJ14CC8822'),
+(1, 'ICICI Lombard', 'POL2023A001', '2026-05-14', 'MH12AB1234'),
+(2, 'HDFC ERGO', 'POL2023A002', '2027-01-10', 'KA03MN8899'),
+(3, 'Bajaj Allianz', 'POL2023A003', '2026-12-20', 'DL01CQ5566'),
+(4, 'SBI General', 'POL2023A004', '2027-10-11', 'TN09BD2345'),
+(5, 'Reliance General', 'POL2023A005', '2028-07-18', 'TS10FG9988'),
+(6, 'Tata AIG', 'POL2023A006', '2026-11-21', 'KL07KL1122'),
+(7, 'ICICI Lombard', 'POL2023A007', '2026-09-09', 'KA19HG7788'),
+(8, 'HDFC ERGO', 'POL2023A008', '2027-04-25', 'TN14ML3344'),
+(9, 'Bajaj Allianz', 'POL2023A009', '2026-06-14', 'OD05AS9090'),
+(10, 'SBI General', 'POL2023A010', '2027-02-09', 'RJ14CC8822'),
 
-(11, 'Reliance General', 'POL2023A011', '2025-08-11', 'UP32FG6677'),
-(12, 'Tata AIG', 'POL2023A012', '2026-06-17', 'MP09KL4455'),
-(13, 'ICICI Lombard', 'POL2023A013', '2025-04-22', 'DL09FG3344'),
-(14, 'HDFC ERGO', 'POL2023A014', '2024-12-30', 'TN06BA7788'),
-(15, 'Bajaj Allianz', 'POL2023A015', '2025-11-13', 'MH01PQ9900'),
-(16, 'SBI General', 'POL2023A016', '2026-03-20', 'WB24TR5566'),
-(17, 'Reliance General', 'POL2023A017', '2025-10-28', 'KA04MG6789'),
-(18, 'Tata AIG', 'POL2023A018', '2026-08-01', 'PB02JK3344'),
-(19, 'ICICI Lombard', 'POL2023A019', '2025-07-12', 'WB20AD7788'),
-(20, 'HDFC ERGO', 'POL2023A020', '2024-11-23', 'UP65BD2233'),
+(11, 'Reliance General', 'POL2023A011', '2026-08-11', 'UP32FG6677'),
+(12, 'Tata AIG', 'POL2023A012', '2027-06-17', 'MP09KL4455'),
+(13, 'ICICI Lombard', 'POL2023A013', '2026-04-22', 'DL09FG3344'),
+(14, 'HDFC ERGO', 'POL2023A014', '2026-12-30', 'TN06BA7788'),
+(15, 'Bajaj Allianz', 'POL2023A015', '2026-11-13', 'MH01PQ9900'),
+(16, 'SBI General', 'POL2023A016', '2027-03-20', 'WB24TR5566'),
+(17, 'Reliance General', 'POL2023A017', '2026-10-28', 'KA04MG6789'),
+(18, 'Tata AIG', 'POL2023A018', '2027-08-01', 'PB02JK3344'),
+(19, 'ICICI Lombard', 'POL2023A019', '2026-07-12', 'WB20AD7788'),
+(20, 'HDFC ERGO', 'POL2023A020', '2026-11-23', 'UP65BD2233'),
 
-(21, 'Bajaj Allianz', 'POL2023A021', '2025-09-01', 'MH14AC9988'),
-(22, 'SBI General', 'POL2023A022', '2026-04-19', 'DL05HJ3366'),
-(23, 'Reliance General', 'POL2023A023', '2024-12-29', 'KA02CD6677'),
-(24, 'Tata AIG', 'POL2023A024', '2025-07-11', 'MH12KM4455'),
-(25, 'ICICI Lombard', 'POL2023A025', '2026-02-28', 'CH01MN1122'),
-(26, 'HDFC ERGO', 'POL2023A026', '2025-12-12', 'KL08NP8899'),
-(27, 'Bajaj Allianz', 'POL2023A027', '2024-10-21', 'MH15ED2233'),
-(28, 'SBI General', 'POL2023A028', '2026-06-29', 'WB17PG7788'),
-(29, 'Reliance General', 'POL2023A029', '2025-01-30', 'GJ05LR5566'),
-(30, 'Tata AIG', 'POL2023A030', '2025-11-30', 'TS07DD9988'),
+(21, 'Bajaj Allianz', 'POL2023A021', '2026-09-01', 'MH14AC9988'),
+(22, 'SBI General', 'POL2023A022', '2027-04-19', 'DL05HJ3366'),
+(23, 'Reliance General', 'POL2023A023', '2026-12-29', 'KA02CD6677'),
+(24, 'Tata AIG', 'POL2023A024', '2026-07-11', 'MH12KM4455'),
+(25, 'ICICI Lombard', 'POL2023A025', '2027-02-28', 'CH01MN1122'),
+(26, 'HDFC ERGO', 'POL2023A026', '2026-12-12', 'KL08NP8899'),
+(27, 'Bajaj Allianz', 'POL2023A027', '2026-10-21', 'MH15ED2233'),
+(28, 'SBI General', 'POL2023A028', '2027-06-29', 'WB17PG7788'),
+(29, 'Reliance General', 'POL2023A029', '2026-12-30', 'GJ05LR5566'),
+(30, 'Tata AIG', 'POL2023A030', '2027-11-30', 'TS07DD9988'),
 
-(31, 'ICICI Lombard', 'POL2023A031', '2024-08-11', 'UP14AK5500'),
-(32, 'HDFC ERGO', 'POL2023A032', '2025-04-21', 'WB10PQ8899'),
-(33, 'Bajaj Allianz', 'POL2023A033', '2026-05-20', 'GA03TR1234'),
-(34, 'SBI General', 'POL2023A034', '2024-12-14', 'TN11MK4455'),
-(35, 'Reliance General', 'POL2023A035', '2026-03-27', 'BR01AP9988'),
-(36, 'Tata AIG', 'POL2023A036', '2026-11-09', 'AP09GH6677'),
-(37, 'ICICI Lombard', 'POL2023A037', '2025-05-17', 'DL02CC8899'),
-(38, 'HDFC ERGO', 'POL2023A038', '2026-07-04', 'KL03BG2233'),
-(39, 'Bajaj Allianz', 'POL2023A039', '2025-10-23', 'KA41DM7788'),
-(40, 'SBI General', 'POL2023A040', '2024-09-12', 'WB11RR9900'),
+(31, 'ICICI Lombard', 'POL2023A031', '2026-08-11', 'UP14AK5500'),
+(32, 'HDFC ERGO', 'POL2023A032', '2027-04-21', 'WB10PQ8899'),
+(33, 'Bajaj Allianz', 'POL2023A033', '2027-05-20', 'GA03TR1234'),
+(34, 'SBI General', 'POL2023A034', '2026-12-14', 'TN11MK4455'),
+(35, 'Reliance General', 'POL2023A035', '2027-03-27', 'BR01AP9988'),
+(36, 'Tata AIG', 'POL2023A036', '2028-11-09', 'AP09GH6677'),
+(37, 'ICICI Lombard', 'POL2023A037', '2026-05-17', 'DL02CC8899'),
+(38, 'HDFC ERGO', 'POL2023A038', '2027-07-04', 'KL03BG2233'),
+(39, 'Bajaj Allianz', 'POL2023A039', '2027-10-23', 'KA41DM7788'),
+(40, 'SBI General', 'POL2023A040', '2026-09-12', 'WB11RR9900'),
 
-(41, 'Reliance General', 'POL2023A041', '2025-05-29', 'OD01AD3344'),
-(42, 'Tata AIG', 'POL2023A042', '2026-02-06', 'TN02GH5566'),
-(43, 'ICICI Lombard', 'POL2023A043', '2024-11-30', 'GJ27BD7788'),
-(44, 'HDFC ERGO', 'POL2023A044', '2026-07-17', 'TS09PQ2233'),
-(45, 'Bajaj Allianz', 'POL2023A045', '2025-03-09', 'HR26MK9988'),
-(46, 'SBI General', 'POL2023A046', '2025-04-30', 'KA51WU8899'),
-(47, 'Reliance General', 'POL2023A047', '2026-10-11', 'MP04LK5566'),
-(48, 'Tata AIG', 'POL2023A048', '2025-09-25', 'MH31DG6677'),
-(49, 'ICICI Lombard', 'POL2023A049', '2024-12-28', 'KA09PL7788'),
-(50, 'HDFC ERGO', 'POL2023A050', '2026-03-30', 'UP78CC9900'),
+(41, 'Reliance General', 'POL2023A041', '2026-05-29', 'OD01AD3344'),
+(42, 'Tata AIG', 'POL2023A042', '2027-02-06', 'TN02GH5566'),
+(43, 'ICICI Lombard', 'POL2023A043', '2026-11-30', 'GJ27BD7788'),
+(44, 'HDFC ERGO', 'POL2023A044', '2027-07-17', 'TS09PQ2233'),
+(45, 'Bajaj Allianz', 'POL2023A045', '2026-03-09', 'HR26MK9988'),
+(46, 'SBI General', 'POL2023A046', '2026-04-30', 'KA51WU8899'),
+(47, 'Reliance General', 'POL2023A047', '2027-10-11', 'MP04LK5566'),
+(48, 'Tata AIG', 'POL2023A048', '2026-09-25', 'MH31DG6677'),
+(49, 'ICICI Lombard', 'POL2023A049', '2026-12-28', 'KA09PL7788'),
+(50, 'HDFC ERGO', 'POL2023A050', '2027-03-30', 'UP78CC9900'),
 
-(51, 'Bajaj Allianz', 'POL2023A051', '2025-02-11', 'MH27AB1122'),
-(52, 'SBI General', 'POL2023A052', '2026-06-10', 'GJ10MN7788'),
-(53, 'Reliance General', 'POL2023A053', '2024-11-14', 'DL08PQ3344'),
-(54, 'Tata AIG', 'POL2023A054', '2025-07-28', 'KA20HN9988'),
-(55, 'ICICI Lombard', 'POL2023A055', '2026-05-22', 'TN10CG4455'),
-(56, 'HDFC ERGO', 'POL2023A056', '2024-09-16', 'KL22MV5566'),
-(57, 'Bajaj Allianz', 'POL2023A057', '2026-08-09', 'MH11AK3344'),
-(58, 'SBI General', 'POL2023A058', '2025-03-19', 'TS11DM9988'),
-(59, 'Reliance General', 'POL2023A059', '2026-07-23', 'WB07JS4455'),
-(60, 'Tata AIG', 'POL2023A060', '2025-12-27', 'KA25GH7788'),
+(51, 'Bajaj Allianz', 'POL2023A051', '2026-02-11', 'MH27AB1122'),
+(52, 'SBI General', 'POL2023A052', '2027-06-10', 'GJ10MN7788'),
+(53, 'Reliance General', 'POL2023A053', '2026-11-14', 'DL08PQ3344'),
+(54, 'Tata AIG', 'POL2023A054', '2027-07-28', 'KA20HN9988'),
+(55, 'ICICI Lombard', 'POL2023A055', '2027-05-22', 'TN10CG4455'),
+(56, 'HDFC ERGO', 'POL2023A056', '2026-09-16', 'KL22MV5566'),
+(57, 'Bajaj Allianz', 'POL2023A057', '2027-08-09', 'MH11AK3344'),
+(58, 'SBI General', 'POL2023A058', '2026-03-19', 'TS11DM9988'),
+(59, 'Reliance General', 'POL2023A059', '2027-07-23', 'WB07JS4455'),
+(60, 'Tata AIG', 'POL2023A060', '2026-12-27', 'KA25GH7788'),
 
-(61, 'ICICI Lombard', 'POL2023A061', '2026-08-28', 'UP11DE6677'),
-(62, 'HDFC ERGO', 'POL2023A062', '2025-04-11', 'MH39EW9988'),
-(63, 'Bajaj Allianz', 'POL2023A063', '2024-12-17', 'KA18KL5566'),
-(64, 'SBI General', 'POL2023A064', '2026-05-31', 'GJ06PQ3344'),
-(65, 'Reliance General', 'POL2023A065', '2025-11-10', 'TN12JG8899'),
-(66, 'Tata AIG', 'POL2023A066', '2025-08-22', 'KL55AD4455'),
-(67, 'ICICI Lombard', 'POL2023A067', '2026-02-12', 'MH04TT7788'),
-(68, 'HDFC ERGO', 'POL2023A068', '2024-11-15', 'DL06CC5566'),
-(69, 'Bajaj Allianz', 'POL2023A069', '2026-09-22', 'UP32JD7788'),
-(70, 'SBI General', 'POL2023A070', '2025-07-14', 'KA34MM1122'),
+(61, 'ICICI Lombard', 'POL2023A061', '2027-08-28', 'UP11DE6677'),
+(62, 'HDFC ERGO', 'POL2023A062', '2026-04-11', 'MH39EW9988'),
+(63, 'Bajaj Allianz', 'POL2023A063', '2026-12-17', 'KA18KL5566'),
+(64, 'SBI General', 'POL2023A064', '2027-05-31', 'GJ06PQ3344'),
+(65, 'Reliance General', 'POL2023A065', '2027-11-10', 'TN12JG8899'),
+(66, 'Tata AIG', 'POL2023A066', '2027-08-22', 'KL55AD4455'),
+(67, 'ICICI Lombard', 'POL2023A067', '2027-02-12', 'MH04TT7788'),
+(68, 'HDFC ERGO', 'POL2023A068', '2026-11-15', 'DL06CC5566'),
+(69, 'Bajaj Allianz', 'POL2023A069', '2027-09-22', 'UP32JD7788'),
+(70, 'SBI General', 'POL2023A070', '2026-07-14', 'KA34MM1122'),
 
-(71, 'Reliance General', 'POL2023A071', '2024-10-28', 'TS21FG7788'),
-(72, 'Tata AIG', 'POL2023A072', '2026-08-07', 'MH47PQ4455'),
-(73, 'ICICI Lombard', 'POL2023A073', '2025-03-29', 'RJ01DE9988'),
-(74, 'HDFC ERGO', 'POL2023A074', '2025-11-19', 'KL43JG6677'),
-(75, 'Bajaj Allianz', 'POL2023A075', '2024-09-11', 'TN04LT5566'),
-(76, 'SBI General', 'POL2023A076', '2026-02-13', 'KA12FG2233'),
-(77, 'Reliance General', 'POL2023A077', '2024-12-26', 'UP53TK7788'),
-(78, 'Tata AIG', 'POL2023A078', '2026-09-21', 'GJ25PK4455'),
-(79, 'ICICI Lombard', 'POL2023A079', '2025-07-05', 'WB09CS6677'),
-(80, 'HDFC ERGO', 'POL2023A080', '2025-12-28', 'TS17BG1122'),
+(71, 'Reliance General', 'POL2023A071', '2026-10-28', 'TS21FG7788'),
+(72, 'Tata AIG', 'POL2023A072', '2027-08-07', 'MH47PQ4455'),
+(73, 'ICICI Lombard', 'POL2023A073', '2026-03-29', 'RJ01DE9988'),
+(74, 'HDFC ERGO', 'POL2023A074', '2027-11-19', 'KL43JG6677'),
+(75, 'Bajaj Allianz', 'POL2023A075', '2026-09-11', 'TN04LT5566'),
+(76, 'SBI General', 'POL2023A076', '2027-02-13', 'KA12FG2233'),
+(77, 'Reliance General', 'POL2023A077', '2026-12-26', 'UP53TK7788'),
+(78, 'Tata AIG', 'POL2023A078', '2027-09-21', 'GJ25PK4455'),
+(79, 'ICICI Lombard', 'POL2023A079', '2026-07-05', 'WB09CS6677'),
+(80, 'HDFC ERGO', 'POL2023A080', '2026-12-28', 'TS17BG1122'),
 
-(81, 'Bajaj Allianz', 'POL2023A081', '2024-12-29', 'MH28RT5566'),
-(82, 'SBI General', 'POL2023A082', '2026-04-14', 'KA15DL6677'),
-(83, 'Reliance General', 'POL2023A083', '2025-11-22', 'BR06TT7788'),
-(84, 'Tata AIG', 'POL2023A084', '2026-06-29', 'TN09GH3344'),
-(85, 'ICICI Lombard', 'POL2023A085', '2025-03-14', 'KL17LK9988'),
-(86, 'HDFC ERGO', 'POL2023A086', '2024-10-17', 'UP44AP4455'),
-(87, 'Bajaj Allianz', 'POL2023A087', '2026-08-11', 'MH05XV7788'),
-(88, 'SBI General', 'POL2023A088', '2025-12-22', 'GJ08RT6677'),
-(89, 'Reliance General', 'POL2023A089', '2024-09-13', 'TS22RF8899'),
-(90, 'Tata AIG', 'POL2023A090', '2026-01-29', 'KA52PG2233'),
+(81, 'Bajaj Allianz', 'POL2023A081', '2026-12-29', 'MH28RT5566'),
+(82, 'SBI General', 'POL2023A082', '2027-04-14', 'KA15DL6677'),
+(83, 'Reliance General', 'POL2023A083', '2026-11-22', 'BR06TT7788'),
+(84, 'Tata AIG', 'POL2023A084', '2027-06-29', 'TN09GH3344'),
+(85, 'ICICI Lombard', 'POL2023A085', '2026-03-14', 'KL17LK9988'),
+(86, 'HDFC ERGO', 'POL2023A086', '2026-10-17', 'UP44AP4455'),
+(87, 'Bajaj Allianz', 'POL2023A087', '2027-08-11', 'MH05XV7788'),
+(88, 'SBI General', 'POL2023A088', '2026-12-22', 'GJ08RT6677'),
+(89, 'Reliance General', 'POL2023A089', '2026-09-13', 'TS22RF8899'),
+(90, 'Tata AIG', 'POL2023A090', '2027-01-29', 'KA52PG2233'),
 
-(91, 'ICICI Lombard', 'POL2023A091', '2025-05-20', 'WB13LP4455'),
-(92, 'HDFC ERGO', 'POL2023A092', '2024-11-28', 'MH33JK7788'),
-(93, 'Bajaj Allianz', 'POL2023A093', '2026-04-18', 'UP40NT5566'),
-(94, 'SBI General', 'POL2023A094', '2025-07-11', 'TN15FG3344'),
-(95, 'Reliance General', 'POL2023A095', '2026-03-23', 'KL27BG6677'),
-(96, 'Tata AIG', 'POL2023A096', '2024-09-30', 'KA07JM9988'),
-(97, 'ICICI Lombard', 'POL2023A097', '2026-05-12', 'TS13QW6677'),
-(98, 'HDFC ERGO', 'POL2023A098', '2025-09-16', 'MH26LK8899'),
-(99, 'Bajaj Allianz', 'POL2023A099', '2024-12-25', 'GJ19DM5566'),
-(100, 'SBI General', 'POL2023A100', '2026-02-08', 'DL03CV4455');
+(91, 'ICICI Lombard', 'POL2023A091', '2026-05-20', 'WB13LP4455'),
+(92, 'HDFC ERGO', 'POL2023A092', '2026-11-28', 'MH33JK7788'),
+(93, 'Bajaj Allianz', 'POL2023A093', '2027-04-18', 'UP40NT5566'),
+(94, 'SBI General', 'POL2023A094', '2026-07-11', 'TN15FG3344'),
+(95, 'Reliance General', 'POL2023A095', '2027-03-23', 'KL27BG6677'),
+(96, 'Tata AIG', 'POL2023A096', '2026-09-30', 'KA07JM9988'),
+(97, 'ICICI Lombard', 'POL2023A097', '2027-05-12', 'TS13QW6677'),
+(98, 'HDFC ERGO', 'POL2023A098', '2026-09-16', 'MH26LK8899'),
+(99, 'Bajaj Allianz', 'POL2023A099', '2026-12-25', 'GJ19DM5566'),
+(100, 'SBI General', 'POL2023A100', '2027-02-08', 'DL03CV4455');
