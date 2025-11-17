@@ -2,7 +2,7 @@
 
 A full-stack database application for managing the entire lifecycle of vehicles — from ownership, servicing, part replacements, warranties, to insurance tracking.  
 
-#Quick Start
+# Quick Start
 1. Install Dependencies
 ```
 pip install -r requirements.txt
@@ -58,6 +58,7 @@ start_interface.bat
 ```
 
 # File Structure 
+```
 VLCMS/
 │── README.md
 │── requirements.txt
@@ -100,3 +101,4 @@ VLCMS/
         ├── triggers.html
         ├── update.html
         └── vehicles.html
+```
