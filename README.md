@@ -2,7 +2,7 @@
 
 A full-stack database application for managing the entire lifecycle of vehicles — from ownership, servicing, part replacements, warranties, to insurance tracking.  
 
-#Quick Start
+# Quick Start
 1. Install Dependencies
 ```
 pip install -r requirements.txt
@@ -39,10 +39,11 @@ mysql -u root -p < Sql_scripts/Create_user_previlages.sql
 
 ```
 9. Configure
+
 Edit ```db_config.py```:
 - Chage user name to your user name 
 - Chagne the password to yuor password 
-- or you can use the previous one only beacuse you are already creted those user 
+- or you can use the previous username and password beacuse you are already creted those user .
 
 10. Run the Application
 A. Normal Run
@@ -58,6 +59,7 @@ start_interface.bat
 ```
 
 # File Structure 
+```
 VLCMS/
 │── README.md
 │── requirements.txt
@@ -100,3 +102,4 @@ VLCMS/
         ├── triggers.html
         ├── update.html
         └── vehicles.html
+```
