@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Delete from {{ table }}{% endblock %}
+
+{% block content %}
+<h2>🟥 Delete Record from {{ table }}</h2>
+
+<form method="POST">
+  <label>Select Record to Delete:</label><br>
+  <select name="record_id" required>
+    {% for r in rows %}
+      <option value="{{ r[columns[0].Field] }}">{{ r[columns[0].Field] }}</option>
+    {% endfor %}
+  </select><br><br>
+  <button type="submit" style="background:red;">Delete</button>
+</form>
+
+<a href="{{ url_for('tables') }}">← Back</a>
+{% endblock %}

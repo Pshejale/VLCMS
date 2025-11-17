@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Run Procedure - {{ proc_name }}{% endblock %}
+
+{% block content %}
+<h2>🧮 Run Procedure: {{ proc_name }}</h2>
+
+{% if params and params|length > 0 %}
+<form method="POST">
+  {% for p in params %}
+    <label>{{ p.PARAMETER_NAME }} ({{ p.DATA_TYPE }})</label><br>
+    <input type="text" name="{{ p.PARAMETER_NAME }}" placeholder="Enter {{ p.PARAMETER_NAME }}" required><br><br>
+  {% endfor %}
+  <button type="submit">Execute Procedure</button>
+</form>
+{% else %}
+<p>This procedure has no input parameters. It will execute immediately.</p>
+<form method="POST">
+  <button type="submit">Run Procedure</button>
+</form>
+{% endif %}
+
+<a href="{{ url_for('procedures') }}">← Back to Procedures</a>
+{% endblock %}
+

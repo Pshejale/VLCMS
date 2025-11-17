@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Insert into {{ table }}{% endblock %}
+
+{% block content %}
+<h2> Insert Record into {{ table }}</h2>
+
+<form method="POST">
+  {% for col in columns %}
+    {% if col.Extra != 'auto_increment' %}
+      <label>{{ col.Field }}</label><br>
+
+      {% if table|lower == 'owner' and col.Field == 'Gender' %}
+        <!-- Gender dropdown for OWNER table -->
+        <select name="Gender" required>
+          <option value="">-- Select Gender --</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select><br><br>
+
+      {% else %}
+        <!-- Default input for all other fields -->
+        <input type="text" name="{{ col.Field }}" placeholder="Enter {{ col.Field }}" required><br><br>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  <button type="submit">Insert</button>
+</form>
+
+<a href="{{ url_for('tables') }}">← Back</a>
+{% endblock %}

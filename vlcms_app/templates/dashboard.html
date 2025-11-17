@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VLCMS Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #f9fbff);
+            overflow-x: hidden;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(90deg, #004aad, #007bff);
+            padding: 0.9rem 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: #fff !important;
+            font-size: 1.4rem;
+        }
+
+        .nav-link {
+            color: #e2e6ea !important;
+            font-weight: 500;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #fff !important;
+            text-shadow: 0 0 8px #ffffffb3;
+            transform: scale(1.05);
+        }
+
+        .nav-link.text-danger:hover {
+            text-shadow: 0 0 10px #ff4d4d;
+        }
+
+        /* Dashboard Section */
+        .dashboard-container {
+            margin-top: 120px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(15px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .welcome-card {
+            background: white;
+            border-radius: 18px;
+            padding: 45px 50px;
+            max-width: 700px;
+            margin: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .welcome-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+            background: linear-gradient(180deg, #ffffff, #f2f8ff);
+        }
+
+        .welcome-card h2 {
+            color: #004aad;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .welcome-card p {
+            color: #333;
+            font-size: 1.05rem;
+        }
+
+        .welcome-card i {
+            color: #007bff;
+            margin-right: 8px;
+        }
+
+        hr {
+            border-top: 3px solid #007bff;
+            width: 60px;
+            margin: 1rem auto 2rem;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f8f9fa;
+            color: #555;
+            text-align: center;
+            font-size: 0.9rem;
+            padding: 15px 0;
+            box-shadow: 0 -3px 8px rgba(0,0,0,0.08);
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #007bff, #00c6ff);
+            color: white;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-card {
+                padding: 30px 25px;
+            }
+            .navbar {
+                padding: 0.7rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">🚗 VLCMS Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                {% if 'tables' in role.visible_sections %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('tables') }}"><i class="bi bi-table nav-icon"></i>Tables</a>
+                </li>
+                {% endif %}
+
+                {% if 'triggers' in role.visible_sections %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('triggers') }}"><i class="bi bi-lightning-charge nav-icon"></i>Triggers</a>
+                </li>
+                {% endif %}
+
+                {% if 'procedures' in role.visible_sections %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('procedures') }}"><i class="bi bi-gear nav-icon"></i>Procedures</a>
+                </li>
+                {% endif %}
+
+                {% if 'functions' in role.visible_sections %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('functions') }}"><i class="bi bi-cpu nav-icon"></i>Functions</a>
+                </li>
+                {% endif %}
+
+                {% if 'queries' in role.visible_sections %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('queries') }}"><i class="bi bi-diagram-3 nav-icon"></i>Complex Queries</a>
+                </li>
+                {% endif %}
+
+                <li class="nav-item">
+                    <a class="nav-link text-danger fw-bold" href="{{ url_for('logout') }}">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <main>
+        <div class="dashboard-container">
+            <div class="welcome-card" onclick="window.location.href='{{ url_for('tables') }}'">
+                <h2>Welcome, {{ user|capitalize }}</h2>
+                <hr>
+
+                {% if user == 'vlcms_user' %}
+                    <p><i class="bi bi-person-badge"></i><strong>Admin Access:</strong> Full control over all tables, triggers, functions, and complex queries.</p>
+                    <div class="role-badge">Administrator</div>
+
+                {% elif user == 'service_staff' %}
+                    <p><i class="bi bi-person-gear"></i><strong>Staff Access:</strong> Can view, insert, and update records but cannot delete data.</p>
+                    <div class="role-badge" style="background: linear-gradient(90deg, #ff9f00, #ffb84d);">Service Staff</div>
+
+                {% elif user == 'service_viewer' %}
+                    <p><i class="bi bi-eye"></i><strong>Viewer Access:</strong> Read-only access to all data and reports.</p>
+                    <div class="role-badge" style="background: linear-gradient(90deg, #6c63ff, #8b80ff);">Viewer</div>
+
+                {% elif user == 'workshop_owner' %}
+                    <p><i class="bi bi-building"></i><strong>Workshop Owner Access:</strong> Manage workshop details and view related service records.</p>
+                    <div class="role-badge" style="background: linear-gradient(90deg, #28a745, #85e085);">Workshop Owner</div>
+
+                {% else %}
+                    <p><i class="bi bi-exclamation-triangle"></i><strong>Unknown Role:</strong> Please contact admin for permission setup.</p>
+                    <div class="role-badge" style="background: linear-gradient(90deg, #dc3545, #ff7b7b);">Restricted</div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Vehicle Life Cycle Management System | Developed by Team VLCMS for UE23CS351A (DBMS Mini Project)</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

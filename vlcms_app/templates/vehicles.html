@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle Records</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f9f9f9; }
+        h2, h3 { color: #2b5797; }
+        table { border-collapse: collapse; width: 90%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #e8eefc; }
+        button { padding: 8px 12px; margin-top: 10px; }
+        a { text-decoration: none; color: #0078d7; font-weight: bold; }
+        .notice { color: #555; font-style: italic; }
+    </style>
+</head>
+<body>
+
+<h2>All Vehicles</h2>
+
+<table>
+<tr>
+    <th>Reg_Num</th>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Year</th>
+    <th>Milage</th>
+    <th>Owner_Id</th>
+</tr>
+{% for v in vehicles %}
+<tr>
+    <td>{{ v.Reg_Num }}</td>
+    <td>{{ v.Make }}</td>
+    <td>{{ v.Model }}</td>
+    <td>{{ v.Year }}</td>
+    <td>{{ v.Milage }}</td>
+    <td>{{ v.Owner_Id }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<hr>
+
+{% if user == 'vlcms_user' or user == 'service_staff' %}
+<h3>Update Vehicle Mileage</h3>
+<form method="POST" action="{{ url_for('update_mileage') }}">
+    <input type="text" name="reg" placeholder="Reg_Num" required>
+    <input type="number" name="milage" placeholder="New Mileage" required>
+    <button type="submit">Update</button>
+</form>
+{% elif user == 'service_viewer' or user == 'workshop_owner' %}
+<p class="notice">You have read-only access. Update form is hidden based on your role.</p>
+{% endif %}
+
+<a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+
+</body>
+</html>

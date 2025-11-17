@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Tables</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+  /* ---------- Page base ---------- */
+  :root {
+    --bg: #f4f8fc;
+    --card: #ffffff;
+    --muted-border: #e6edf6;
+    --accent: #084298;
+    --accent-strong: #0056b3;
+    --btn-blue: #0b9aeb;
+    --btn-green: #2dbf73;
+    --btn-yellow: #ffb84d;
+    --btn-red: #ef6b6b;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    margin: 0;
+    padding: 40px 28px 80px; /* space at bottom for dashboard button */
+    color: #0b2b4a;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    color: var(--accent);
+    text-align: center;
+    margin: 0 0 28px;
+    font-weight: 700;
+  }
+
+  /* ---------- Card grid ---------- */
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 110px auto;
+    max-width: 1100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* centers last row automatically */
+    gap: 50px;
+  }
+
+  li {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 22px 18px;
+    border: 1px solid var(--muted-border);
+    box-shadow: 0 8px 22px rgba(6, 20, 42, 0.06);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    min-width: 220px;
+    max-width: 240px;
+    text-align: center;
+  }
+
+  li:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 38px rgba(6, 20, 42, 0.12);
+    border-color: rgba(6,54,111,0.08);
+  }
+
+  li a {
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    transition: color 160ms ease, background 160ms ease, transform 160ms ease;
+  }
+
+  li a:hover {
+    color: var(--accent-strong);
+    background: rgba(6,54,111,0.04);
+    border-radius: 8px;
+  }
+
+  li::after {
+    content: "→";
+    color: rgba(6,54,111,0.25);
+    font-weight: 800;
+    margin-left: 6px;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  li:hover::after {
+    color: rgba(6,54,111,0.55);
+    transform: translateX(5px);
+  }
+
+  /* ---------- Floating Dashboard Button ---------- */
+  a[href*="dashboard"] {
+    position: fixed;
+    right: 30px;
+    bottom: 25px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 28px;
+    box-shadow: 0 6px 20px rgba(3, 48, 98, 0.2);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 2000;
+  }
+
+  a[href*="dashboard"]:hover {
+    background: var(--accent-strong);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(3, 48, 98, 0.25);
+  }
+
+  /* ---------- Modal ---------- */
+  #viewBtn, #insertBtn, #updateBtn, #deleteBtn {
+    display: none; /* hidden until JS shows them */
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(6,20,42,0.45);
+    backdrop-filter: blur(3px);
+    padding: 20px;
+    overflow: auto;
+  }
+
+  .modal[style*="display: block"], .modal[style*="display:block"] {
+    display: block;
+  }
+
+  .modal[style*="display: block"] .modal-content,
+  .modal[style*="display:block"] .modal-content {
+    margin: 8% auto;
+    display: block;
+  }
+
+  .modal-content {
+    background: #fff;
+    border-radius: 12px;
+    width: 420px;
+    max-width: 92%;
+    padding: 24px;
+    box-shadow: 0 18px 42px rgba(6,20,42,0.18);
+    border: 1px solid rgba(11,43,74,0.06);
+    text-align: center;
+    position: relative;
+  }
+
+  .modal-content h3 {
+    margin: 2px 0 14px;
+    font-size: 1.12rem;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .modal-content .close {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    font-size: 18px;
+    color: #c62828;
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  .modal button {
+    margin: 8px 6px 0;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    color: white;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  }
+
+  #viewBtn { background: var(--btn-blue); }
+  #insertBtn { background: var(--btn-green); }
+  #updateBtn { background: var(--btn-yellow); color: #1a1a1a; }
+  #deleteBtn { background: var(--btn-red); }
+
+  .modal button:hover { transform: translateY(-3px); opacity: 0.95; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 760px) {
+    body { padding: 20px 14px 80px; }
+    li { min-width: 45%; max-width: 48%; }
+    .modal-content { padding: 18px; width: 92%; }
+    .modal button { padding: 10px 12px; font-size: 14px; }
+    a[href*="dashboard"] { right: 20px; bottom: 20px; }
+  }
+</style>
+
+
+
+  <script>
+    // Hide all buttons initially
+    function resetModalButtons() {
+      document.getElementById("insertBtn").style.display = "none";
+      document.getElementById("updateBtn").style.display = "none";
+      document.getElementById("deleteBtn").style.display = "none";
+    }
+
+    // Open modal and show allowed actions
+    function openActionModal(tableName, canInsert, canUpdate, canDelete) {
+      const modal = document.getElementById("actionModal");
+      resetModalButtons();
+
+      modal.style.display = "block";
+      document.getElementById("tableTitle").textContent = tableName;
+      document.getElementById("selectedTable").value = tableName;
+
+      // Always allow "View"
+      document.getElementById("viewBtn").style.display = "inline-block";
+
+      // Display according to boolean values
+      if (canInsert === true) document.getElementById("insertBtn").style.display = "inline-block";
+      if (canUpdate === true) document.getElementById("updateBtn").style.display = "inline-block";
+      if (canDelete === true) document.getElementById("deleteBtn").style.display = "inline-block";
+    }
+
+    // Close modal
+    function closeModal() {
+      const modal = document.getElementById("actionModal");
+      modal.style.display = "none";
+      resetModalButtons();
+    }
+
+    // Close modal when clicking outside content
+    window.onclick = function(event) {
+      const modal = document.getElementById("actionModal");
+      if (event.target == modal) closeModal();
+    };
+  </script>
+</head>
+<body>
+
+<h2> Tables in Database</h2>
+
+<ul>
+{% for t in tables %}
+  <li>
+    <a href="javascript:void(0);"
+       onclick="openActionModal(
+         '{{ t }}',
+         {{ (role.get('can_insert_all', False) or (t in role.get('can_insert', []))) | tojson }},
+         {{ (role.get('can_update_all', False) or (t in role.get('can_update', []))) | tojson }},
+         {{ (role.get('can_delete_all', False) or (t in role.get('can_delete', []))) | tojson }}
+       )">
+      {{ t }}
+    </a>
+  </li>
+{% endfor %}
+</ul>
+
+<a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+
+<!-- Popup Modal -->
+<div id="actionModal" class="modal" aria-hidden="true">
+  <div class="modal-content" role="dialog" aria-modal="true">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3 id="tableTitle"></h3>
+    <input type="hidden" id="selectedTable">
+
+    <button id="viewBtn"
+      onclick="window.location.href='/table/' + encodeURIComponent(document.getElementById('selectedTable').value);">
+      View
+    </button>
+
+    <button id="insertBtn"
+      onclick="window.location.href='/insert/' + encodeURIComponent(document.getElementById('selectedTable').value);">
+      Insert
+    </button>
+
+    <button id="updateBtn"
+      onclick="window.location.href='/update/' + encodeURIComponent(document.getElementById('selectedTable').value);">
+      Update
+    </button>
+
+    <button id="deleteBtn"
+      onclick="window.location.href='/delete/' + encodeURIComponent(document.getElementById('selectedTable').value);">
+      Delete
+    </button>
+  </div>
+</div>
+
+</body>
+</html>

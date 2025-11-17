@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Stored Procedures{% endblock %}
+{% block content %}
+<h2> Stored Procedures in VLCMS</h2>
+
+{% if procedures and procedures|length > 0 %}
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr>
+    <th>Procedure Name</th>
+    <th>Created</th>
+    <th>Last Modified</th>
+    <th>Action</th>
+  </tr>
+  {% for p in procedures %}
+  <tr>
+    <td>{{ p.ROUTINE_NAME }}</td>
+    <td>{{ p.CREATED }}</td>
+    <td>{{ p.LAST_ALTERED }}</td>
+    <td>
+      <a href="{{ url_for('run_procedure', proc_name=p.ROUTINE_NAME) }}">
+        <button type="button">Run</button>
+      </a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No procedures found.</p>
+{% endif %}
+
+<a href="{{ url_for('dashboard') }}">← Back</a>
+{% endblock %}

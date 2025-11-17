@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Procedure Result{% endblock %}
+
+{% block content %}
+<h2> Results from {{ proc_name }}</h2>
+
+{% if data and data|length > 0 %}
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr>
+    {% for col in data[0].keys() %}
+      <th>{{ col }}</th>
+    {% endfor %}
+  </tr>
+  {% for row in data %}
+  <tr>
+    {% for value in row.values() %}
+      <td>{{ value }}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No result data returned by this procedure.</p>
+{% endif %}
+
+<a href="{{ url_for('procedures') }}">← Back</a>
+{% endblock %}

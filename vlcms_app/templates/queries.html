@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Complex Queries{% endblock %}
+
+{% block content %}
+<h2>🧮 Complex SQL Queries</h2>
+<p>Select a query to execute:</p>
+
+{% if queries_list %}
+<table border="1" cellpadding="8">
+  <tr><th>Query Description</th><th>Action</th></tr>
+  {% for q in queries_list %}
+  <tr>
+    <td>{{ q.name }}</td>
+    <td>
+      <a href="{{ url_for('run_query', query_id=q.id) }}">
+        <button type="button">Run</button>
+      </a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No queries defined.</p>
+{% endif %}
+
+<a href="{{ url_for('dashboard') }}">← Back</a>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Update {{ table }}{% endblock %}
+
+{% block content %}
+<h2> Update Record in {{ table }}</h2>
+
+<!-- Step 1: Record Selection -->
+<form method="GET" action="{{ url_for('update_record', table=table) }}">
+  <label>Select Record to Update:</label><br>
+  <select name="record_id" required>
+    {% for r in rows %}
+      <option value="{{ r[primary_key] }}"
+        {% if selected_record and r[primary_key] == selected_record[primary_key] %}selected{% endif %}>
+        {{ r[primary_key] }}
+      </option>
+    {% endfor %}
+  </select>
+  <button type="submit">Load Record</button>
+</form>
+
+{% if selected_record %}
+<!-- Step 2: Edit Form -->
+<hr>
+<form method="POST" action="{{ url_for('update_record', table=table) }}">
+  <input type="hidden" name="record_id" value="{{ selected_record[primary_key] }}">
+
+  {% for col in columns[1:] %}
+    <label>{{ col.Field }}</label><br>
+    <input type="text" name="{{ col.Field }}"
+           value="{{ selected_record[col.Field] if selected_record[col.Field] is not none else '' }}"><br><br>
+  {% endfor %}
+
+  <button type="submit">Save Changes</button>
+</form>
+{% endif %}
+
+<a href="{{ url_for('tables') }}">← Back to Tables</a>
+
+<style>
+  form { margin-top: 20px; }
+  input { padding: 6px; width: 250px; }
+  label { font-weight: bold; }
+</style>
+{% endblock %}

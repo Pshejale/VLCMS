@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ name }} Table</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h2>{{ name }} Table</h2>
+
+  <table border="1">
+    <tr>
+      {% for c in cols %}
+        <th>{{ c }}</th>
+      {% endfor %}
+    </tr>
+    {% for r in rows %}
+    <tr>
+      {% for c in cols %}
+        <td>{{ r[c] }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+
+  <a href="{{ url_for('tables') }}">← Back to Tables</a>
+</body>
+</html>

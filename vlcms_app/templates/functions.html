@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Stored Functions{% endblock %}
+{% block content %}
+
+<h2>🧮 Stored Functions in VLCMS</h2>
+
+{% if functions and functions|length > 0 %}
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr>
+    <th>Function Name</th>
+    <th>Return Type</th>
+    <th>Created</th>
+    <th>Last Modified</th>
+    <th>Action</th>
+  </tr>
+  {% for f in functions %}
+  <tr>
+    <td>{{ f.ROUTINE_NAME }}</td>
+    <td>{{ f.return_type }}</td>
+    <td>{{ f.CREATED }}</td>
+    <td>{{ f.LAST_ALTERED }}</td>
+    <td>
+      <a href="{{ url_for('run_function', func_name=f.ROUTINE_NAME) }}">
+        <button type="button">Run</button>
+      </a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No stored functions found in the VLCMS database.</p>
+{% endif %}
+
+<a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+
+{% endblock %}

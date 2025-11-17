@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Query Result{% endblock %}
+
+{% block content %}
+<h2> {{ title }}</h2>
+
+{% if data and data|length > 0 %}
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr>
+    {% for col in data[0].keys() %}
+      <th>{{ col }}</th>
+    {% endfor %}
+  </tr>
+  {% for row in data %}
+  <tr>
+    {% for value in row.values() %}
+      <td>{{ value }}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No data found for this query.</p>
+{% endif %}
+
+<a href="{{ url_for('queries') }}">← Back to Query List</a>
+{% endblock %}
+
